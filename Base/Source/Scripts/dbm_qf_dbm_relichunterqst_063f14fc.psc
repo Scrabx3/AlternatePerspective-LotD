@@ -76,7 +76,8 @@ Function Fragment_9()
 
 SetObjectiveFailed(25)
 
-if IsObjectiveFailed(25) && IsObjectiveCompleted(26) && IsObjectiveCompleted(27)
+if IsObjectiveCompleted(26) && IsObjectiveCompleted(27)
+; if IsObjectiveFailed(25) && IsObjectiveCompleted(26) && IsObjectiveCompleted(27)
     
 SetStage(35)
 
@@ -92,7 +93,8 @@ Function Fragment_8()
 
 SetObjectiveCompleted(27)
 
-if IsObjectiveFailed(25) && IsObjectiveCompleted(26) && IsObjectiveCompleted(27)
+if IsObjectiveCompleted(26) && IsObjectiveCompleted(27)
+; if IsObjectiveFailed(25) && IsObjectiveCompleted(26) && IsObjectiveCompleted(27)
 
     SetStage(35)
 
