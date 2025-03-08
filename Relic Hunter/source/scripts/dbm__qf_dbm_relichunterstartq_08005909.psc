@@ -2,39 +2,9 @@
 ;NEXT FRAGMENT INDEX 24
 Scriptname DBM__QF_DBM_RelicHunterStartQ_08005909 Extends Quest Hidden
 
-;BEGIN ALIAS PROPERTY CompassREF
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_CompassREF Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY PackREF
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_PackREF Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY RelicREF
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_RelicREF Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY FarlanREF
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_FarlanREF Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY LeverREF
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_LeverREF Auto
-;END ALIAS PROPERTY
-
 ;BEGIN ALIAS PROPERTY AlvaroToolREF
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_AlvaroToolREF Auto
-;END ALIAS PROPERTY
-
-;BEGIN ALIAS PROPERTY SextantRef
-;ALIAS PROPERTY TYPE ReferenceAlias
-ReferenceAlias Property Alias_SextantRef Auto
 ;END ALIAS PROPERTY
 
 ;BEGIN ALIAS PROPERTY GuardREF
@@ -42,10 +12,68 @@ ReferenceAlias Property Alias_SextantRef Auto
 ReferenceAlias Property Alias_GuardREF Auto
 ;END ALIAS PROPERTY
 
+;BEGIN ALIAS PROPERTY FarlanREF
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_FarlanREF Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY RelicREF
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_RelicREF Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY CompassREF
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_CompassREF Auto
+;END ALIAS PROPERTY
+
 ;BEGIN ALIAS PROPERTY KarlREF
 ;ALIAS PROPERTY TYPE ReferenceAlias
 ReferenceAlias Property Alias_KarlREF Auto
 ;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY LeverREF
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_LeverREF Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY PackREF
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_PackREF Auto
+;END ALIAS PROPERTY
+
+;BEGIN ALIAS PROPERTY SextantRef
+;ALIAS PROPERTY TYPE ReferenceAlias
+ReferenceAlias Property Alias_SextantRef Auto
+;END ALIAS PROPERTY
+
+;BEGIN FRAGMENT Fragment_12
+Function Fragment_12()
+;BEGIN CODE
+SanctumDoor.Lock(false)
+SetObjectiveCompleted(20)
+DBM_RHStartQSTGuardContinue.Start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_16
+Function Fragment_16()
+;BEGIN CODE
+SetObjectiveDisplayed(31)
+Actor Guard = Alias_GuardRef.GetReference() as actor
+Guard.EvaluatePackage()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_4
+Function Fragment_4()
+;BEGIN CODE
+SetObjectiveDisplayed(10)
+;END CODE
+EndFunction
+;END FRAGMENT
 
 ;BEGIN FRAGMENT Fragment_18
 Function Fragment_18()
@@ -53,8 +81,35 @@ Function Fragment_18()
 RegisterForSingleUpdateGameTime(120)
 DBM_RelicHUnterQST.Start()
 SetObjectiveDisplayed(35)
-;Stop the regular intro quest
-DBM_MuseumIntro.SetStage(200)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_8
+Function Fragment_8()
+;BEGIN CODE
+DBM_RHStartQSTDoorScene.Start()
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_14
+Function Fragment_14()
+;BEGIN CODE
+SetObjectiveCompleted(15)
+Actor Guard = Alias_GuardRef.GetReference() as actor
+Guard.EvaluatePackage()
+Guard.SetPlayerteammate(false)
+;END CODE
+EndFunction
+;END FRAGMENT
+
+;BEGIN FRAGMENT Fragment_10
+Function Fragment_10()
+;BEGIN CODE
+Alias_LeverREF.TryToEnable()
+SetObjectiveDisplayed(20)
+DBM_RHStartQSTDoorScene.Stop()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -66,16 +121,6 @@ SetObjectiveCompleted(10)
 setObjectiveDisplayed(15)
 Actor Guard = Alias_GuardRef.GetReference() as actor
 Guard.SetPlayerteammate()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_12
-Function Fragment_12()
-;BEGIN CODE
-SanctumDoor.Lock(false)
-SetObjectiveCompleted(20)
-DBM_RHStartQSTGuardContinue.Start()
 ;END CODE
 EndFunction
 ;END FRAGMENT
@@ -105,59 +150,15 @@ KamhilMap.Enable()
 Ralis.RemoveItem(Sextant)
 DBM_MuseumStart.SetValue(4)
 HorseREF.Enable()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_16
-Function Fragment_16()
-;BEGIN CODE
-SetObjectiveDisplayed(31)
-Actor Guard = Alias_GuardRef.GetReference() as actor
-Guard.EvaluatePackage()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_10
-Function Fragment_10()
-;BEGIN CODE
-Alias_LeverREF.TryToEnable()
-SetObjectiveDisplayed(20)
-DBM_RHStartQSTDoorScene.Stop()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_4
-Function Fragment_4()
-;BEGIN CODE
-SetObjectiveDisplayed(10)
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_8
-Function Fragment_8()
-;BEGIN CODE
-DBM_RHStartQSTDoorScene.Start()
-;END CODE
-EndFunction
-;END FRAGMENT
-
-;BEGIN FRAGMENT Fragment_14
-Function Fragment_14()
-;BEGIN CODE
-SetObjectiveCompleted(15)
-Actor Guard = Alias_GuardRef.GetReference() as actor
-Guard.EvaluatePackage()
-Guard.SetPlayerteammate(false)
+; ARTHLALRumorsOfWarQuest.RegisterForSingleUpdate(0.25)
 ;END CODE
 EndFunction
 ;END FRAGMENT
 
 ;END FRAGMENT CODE - Do not edit anything between this and the begin comment
 
+
+; Quest Property ARTHLALRumorsOfWarQuest  Auto  
 ObjectReference Property RHStartTent Auto
 Armor  Property ClothesFarmGloves03 Auto
 Armor Property ClothesMinerBoots Auto
@@ -192,5 +193,3 @@ GlobalVariable Property DBM_MuseumStart  Auto
 GlobalVariable Property DBM_ArcSkill  Auto  
 
 ObjectReference Property HorseREF  Auto  
-
-Quest Property DBM_MuseumIntro  Auto  
